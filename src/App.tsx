@@ -254,6 +254,7 @@ function App() {
             )
           })}
         </main>
+        <footer>eth: 0xBaD33b01A34f92843413C3c0Cc8473dfe21C0c16</footer>
       </div>
 
       <Results

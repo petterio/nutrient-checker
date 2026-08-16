@@ -317,6 +317,17 @@ h1 {
   line-height: 1.45;
 }
 
+footer {
+  padding: 8px 18px 28px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  text-align: center;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+
 @media (max-width: 800px) {
   .page {
     grid-template-columns: 1fr;

@@ -23,6 +23,7 @@ export function FoodPhoto({ id, locale }: { id: string; locale: Locale }) {
       src={current.src}
       alt=""
       loading="lazy"
+      referrerPolicy="no-referrer"
       onError={() => setIndex((value) => value + 1)}
     />
   )

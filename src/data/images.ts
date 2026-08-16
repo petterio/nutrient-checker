@@ -1,7 +1,7 @@
 import type { Locale } from './i18n'
 
 const w = (file: string) =>
-  `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=500`
+  `https://commons.wikimedia.org/w/thumb.php?f=${encodeURIComponent(file)}&w=500`
 
 const m = (name: string) =>
   `https://www.themealdb.com/images/ingredients/${encodeURIComponent(name)}.png`
@@ -22,6 +22,10 @@ type Entry = {
 }
 
 const wiki = (file: string): FoodImage => ({ src: w(file), fit: 'contain' })
+const upload = (path: string): FoodImage => ({
+  src: `https://upload.wikimedia.org/wikipedia/commons/${path}`,
+  fit: 'contain',
+})
 const meal = (name: string): FoodImage => ({ src: m(name), fit: 'contain' })
 const icon = (name: string): FoodImage => ({ src: pixar(name), fit: 'contain' })
 
@@ -39,20 +43,59 @@ const FOOD_IMAGES: Record<string, Entry> = {
   turkey: { icon: 'cooked-chicken', both: [meal('Turkey')] },
   'beef-steak': { icon: 'cut-of-meat', both: [meal('Beef'), wiki('Raw_beef_steak.jpg')] },
   'ground-beef': { icon: 'hamburger', both: [meal('Minced Beef'), wiki('Minced_meat.jpg')] },
-  'roast-beef': { icon: 'cut-of-meat', both: [meal('Beef')] },
+  'roast-beef': {
+    icon: 'cut-of-meat',
+    both: [
+      upload('thumb/1/1e/Roast_topside_of_beef.jpg/500px-Roast_topside_of_beef.jpg'),
+      wiki('Roast topside of beef.jpg'),
+    ],
+  },
   'pork-chop': { icon: 'cut-of-meat', both: [meal('Pork'), wiki('Raw_pork_chop.jpg')] },
   bacon: { icon: 'bacon', both: [meal('Bacon')] },
   ham: { icon: 'cut-of-meat', both: [meal('Ham')] },
   lamb: { icon: 'cut-of-meat', both: [meal('Lamb')] },
-  sausage: { icon: 'hot-dog', both: [wiki('Bratwurst-1.jpg'), wiki('Wiener_Wuerstchen_fcm.jpg'), meal('Sausage')] },
+  sausage: {
+    icon: 'hot-dog',
+    both: [
+      upload('thumb/2/21/Bratwurst-1.jpg/500px-Bratwurst-1.jpg'),
+      wiki('Bratwurst-1.jpg'),
+      wiki('Wiener Wuerstchen (fcm).jpg'),
+    ],
+  },
   duck: { icon: 'cooked-chicken', both: [meal('Duck')] },
-  liver: { icon: 'cut-of-meat', both: [wiki('Raw veal liver, 2010.jpg'), wiki('Foie de boeuf.jpg'), wiki('Beef liver.jpg')] },
-  meatballs: { icon: 'falafel', both: [meal('Minced Beef')] },
-  'pulled-pork': { icon: 'stuffed-flatbread', both: [meal('Pork')] },
+  liver: {
+    icon: 'cut-of-meat',
+    both: [
+      upload('thumb/6/6f/Chicken_Liver.jpg/500px-Chicken_Liver.jpg'),
+      wiki('Chicken Liver.jpg'),
+      wiki('Raw veal liver, 2010.jpg'),
+    ],
+  },
+  meatballs: { icon: 'falafel', both: [wiki("Köttbullar - Mama's Meetballs 2024-02-11.jpg")] },
+  'pulled-pork': {
+    icon: 'stuffed-flatbread',
+    both: [upload('thumb/8/82/Pulled_pork_007.jpg/500px-Pulled_pork_007.jpg'), wiki('Pulled pork 007.jpg')],
+  },
   veal: { icon: 'cut-of-meat', both: [meal('Veal'), meal('Beef')] },
-  salami: { icon: 'pizza', both: [wiki('Salami aka.jpg'), wiki('3 Salami.JPG')] },
-  prosciutto: { icon: 'bacon', both: [meal('Ham')] },
-  ribs: { icon: 'cut-of-meat', both: [meal('Pork'), wiki('Raw_pork_ribs.jpg')] },
+  salami: {
+    icon: 'pizza',
+    both: [
+      upload('thumb/1/18/Salami_aka.jpg/500px-Salami_aka.jpg'),
+      wiki('Salami aka.jpg'),
+      wiki('3 Salami.JPG'),
+    ],
+  },
+  prosciutto: {
+    icon: 'bacon',
+    both: [
+      upload('thumb/b/b4/Parma_Ham_Prosciutto_02.jpg/500px-Parma_Ham_Prosciutto_02.jpg'),
+      wiki('Parma Ham Prosciutto 02.jpg'),
+    ],
+  },
+  ribs: {
+    icon: 'cut-of-meat',
+    both: [upload('thumb/a/a7/Pork_ribs.jpg/500px-Pork_ribs.jpg'), wiki('Pork ribs.jpg')],
+  },
 
   salmon: { icon: 'fish', both: [meal('Salmon'), wiki('Raw_salmon_fillet.jpg')] },
   trout: { icon: 'fish', both: [meal('Trout'), meal('Salmon')] },
